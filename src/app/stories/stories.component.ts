@@ -8,18 +8,16 @@ import { HackerNewsAPIService } from '../hackernews-api.service';
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.scss']
 })
+
 export class StoriesComponent implements OnInit {
+  items;
 
-  items: number[];
-
-  constructor(private _hackerNewsAPIService:HackerNewsAPIService) { 
-    this.items = Array(30).fill().map((x,i)=>i);
-  }
+  constructor(private _hackerNewsAPIService: HackerNewsAPIService) {}
 
   ngOnInit() {
-    this._hackerNewsAPIService.fetchStories()
-                    .subscribe(
-                      items => this.items = items,
-                      error => console.log('Error fetching stories'));
+  	this._hackerNewsAPIService.fetchStories()
+                   	.subscribe(
+                    	items => this.items = items,
+                    	error => console.log('Error fetching stories'));
   }
 }
